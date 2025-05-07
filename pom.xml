@@ -16,10 +16,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>tech.medivh</groupId>
+      <artifactId>shengsheng-classpy</artifactId>
+      <version>1.1.0</version>
     </dependency>
   </dependencies>
 </project>
