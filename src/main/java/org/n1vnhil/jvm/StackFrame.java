@@ -20,7 +20,7 @@ public class StackFrame {
     /**
      * 操作数栈
      */
-    private Deque<Object> operandStatus;
+    private Deque<Object> operandStack;
 
     /**
      * 字节码
@@ -32,12 +32,12 @@ public class StackFrame {
      */
     int currentIndex;
 
-    private ConstantPool constantPool;
+    public ConstantPool constantPool;
 
     public StackFrame(MethodInfo methodInfo, ConstantPool constantPool, Object... args) {
         this.methodInfo = methodInfo;
         this.localVariable = new Object[methodInfo.getMaxLocals()];
-        this.operandStatus = new ArrayDeque<>();
+        this.operandStack = new ArrayDeque<>();
         this.codes = methodInfo.getCodes();
         this.constantPool = constantPool;
         System.arraycopy(args, 0, localVariable, 0, args.length);
@@ -45,5 +45,13 @@ public class StackFrame {
 
     public Instruction getNextInstruction() {
         return codes.get(currentIndex++);
+    }
+
+    public void pushObjectToOperandStack(Object object) {
+        this.operandStack.push(object);
+    }
+
+    public Deque<Object> getOperandStack() {
+        return this.operandStack;
     }
 }
