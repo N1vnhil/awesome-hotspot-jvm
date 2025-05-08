@@ -70,7 +70,7 @@ public class Thread {
                         if(!methodrefInfo.isVoid(constantPool)) {
                             stack.peek().getOperandStack().push(result);
                         }
-                        return;
+                        break;
                     }
 
                     ClassFile classFile = classLoader.loadClass(className);
@@ -85,6 +85,10 @@ public class Thread {
 
                 case _return -> {
                     stack.pop();
+                }
+
+                default -> {
+                    throw new RuntimeException("这个指令还没有实现：" + instruction);
                 }
             }
         }
